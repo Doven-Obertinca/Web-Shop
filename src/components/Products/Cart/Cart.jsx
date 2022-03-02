@@ -1,22 +1,24 @@
 import React from 'react'
 import { Container, Typography, Button, Grid } from '@material-ui/core'
 import useStyles from "./styles";
-const Cart = ( cart ) => {
-    const isEmpty = !cart.line_items.length;
+
+
+const Cart = ({ cart }) => {
+    const isEmpty = !cart.line_items?.length; 
     const classes = useStyles();
 
     const EmptyCart = () =>(
-        <Typography variant="subtitel1">You have no items in your shoppig cart, start adding some!</Typography>
+        <Typography variant="subtitle1">You have no items in your shoppig cart, start adding some!</Typography>
     );
     const FilledCart = () =>(
             <>
                 <Grid container spacing={3}>
-                    {cart.line_items.map((lineItem) => (
-                            <Grid item xs={12} sm={4} key={lineItem.id}>
-                                <div>{lineItem.name}</div>
+                    {cart.line_items.map((item) => (
+                            <Grid item xs={12} sm={4} key={item.id}>
+                                <div>{item.name}</div>
 
                             </Grid>
-                    ))}
+                    ))};
                 </Grid>
                 <div className={classes.cardDetails}>
                            <Typography variant="h4">Subtotal: { cart.subtotal.formatted_with_symbol}</Typography>
@@ -39,4 +41,4 @@ const Cart = ( cart ) => {
   )
 }
 
-export default Cart
+export default Cart;
